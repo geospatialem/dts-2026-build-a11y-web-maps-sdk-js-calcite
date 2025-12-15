@@ -1,2 +1,2 @@
-# dts-2026-build-a11y-web-maps-sdk-js-calcite
-Building Accessible Web Apps with ArcGIS Maps SDK for JavaScript and Calcite at 2026 Developer &amp; Technology Summit
+# Building Accessible Web Apps with ArcGIS Maps SDK for JavaScript and Calcite
+Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley in Palm Springs, California.
