@@ -47,7 +47,6 @@ function handleModeChange() {
   alertTitleEl.innerText = "Loading the map...";
   document.querySelector("calcite-loader").removeAttribute("hidden");
   document.querySelector("arcgis-map").toggleAttribute("hidden");
-  debugger;
   mode = mode === "dark" ? "light" : "dark";
   const isDarkMode = mode === "dark";
   mapEl.itemId = isDarkMode
