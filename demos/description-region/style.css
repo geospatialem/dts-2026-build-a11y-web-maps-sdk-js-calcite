@@ -24,20 +24,6 @@ calcite-action-bar {
   margin-inline-end: 0.5rem;
 }
 
-#modal hr {
-  margin: 1rem 0;
-  border: 0;
-  border-bottom: 1px solid var(--calcite-color-border-3);
-}
-
-#modal ul li {
-  margin-bottom: 0.5rem;
-}
-
-#modal calcite-notice {
-  margin-bottom: 1.25rem;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;

@@ -25,7 +25,7 @@ mapEl.addEventListener("arcgisViewReadyChange", async () => {
   // [3] If open, set focus on the alert
   if (alertEl.open) {
     alertEl.setFocus();
-  }
+  };
 
   // If not already open, set the alert to be open
   alertEl.open = true;
