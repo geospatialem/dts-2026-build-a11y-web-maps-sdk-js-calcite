@@ -15,7 +15,7 @@
     <calcite-shell content-behind>
       <calcite-loader label="Loading map" text="Loading..."></calcite-loader>
       <calcite-navigation navigation-action slot="header" id="nav">
-        <calcite-navigation-logo id="logo-el" icon="accessibility" alt="" slot="logo" heading="Map description and regions"></calcite-navigation-logo>
+        <calcite-navigation-logo icon="accessibility" alt="" slot="logo" heading="Map description and regions"></calcite-navigation-logo>
         <calcite-action-bar layout="horizontal" expand-disabled slot="content-end">
           <calcite-action id="toggle-mode" text="Toggle mode" icon="brightness" ></calcite-action>
         </calcite-action-bar>
@@ -23,12 +23,12 @@
         <calcite-tooltip placement="bottom" reference-element="toggle-mode" slot="content-end">Toggle mode</calcite-tooltip>
       </calcite-navigation>
 
-      <arcgis-map hidden id="map-el" item-id="05e015c5f0314db9a487a9b46cb37eca"></arcgis-map>
+      <arcgis-map id="map-el" item-id="05e015c5f0314db9a487a9b46cb37eca"></arcgis-map>
       <span class="sr-only" aria-live="polite" id="assistive-context"></span>
     </calcite-shell>
 
     <!-- Demo template interactive elements -->
-    <calcite-alert id="alert-el" aria-live="polite" open loading icon="map-information" placement="bottom-end">
+    <calcite-alert id="alert-el" aria-live="polite" open icon="map-information" placement="bottom-end">
       <div id="alert-title" slot="title">Loading the map...</div>
       <div slot="message">To dismiss this alert, select the close button.</div>
     </calcite-alert>

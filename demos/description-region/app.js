@@ -1,14 +1,11 @@
 const toggleModeEl = document.getElementById("toggle-mode");
 const navigationEl = document.getElementById("nav");
-const logoEl = document.getElementById("logo-el");
 const panelEl = document.getElementById("sheet-panel");
 const sheetEl = document.getElementById("sheet");
 const mapEl = document.getElementById("map-el");
 const alertEl = document.getElementById("alert-el");
 const alertTitleEl = document.getElementById("alert-title");
 const assistiveContextEl = document.getElementById("assistive-context");
-
-mapEl.removeAttribute("hidden");
 
 mapEl.addEventListener("arcgisViewReadyChange", async () => {
   mapEl.removeAttribute("hidden");
@@ -46,7 +43,7 @@ panelEl.addEventListener("calcitePanelClose", () => handlePanelClose());
 function handleModeChange() {
   alertTitleEl.innerText = "Loading the map...";
   document.querySelector("calcite-loader").removeAttribute("hidden");
-  document.querySelector("arcgis-map").toggleAttribute("hidden");
+  mapEl.toggleAttribute("hidden");
   mode = mode === "dark" ? "light" : "dark";
   const isDarkMode = mode === "dark";
   mapEl.itemId = isDarkMode
