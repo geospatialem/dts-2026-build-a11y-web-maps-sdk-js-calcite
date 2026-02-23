@@ -6,7 +6,14 @@ const mapEl = document.getElementById("map-el");
 const alertEl = document.getElementById("alert-el");
 const alertTitleEl = document.getElementById("alert-title");
 const assistiveContextEl = document.getElementById("assistive-context");
+const hiddenElements = document.querySelectorAll('[hidden]');
 
+// Add hidden elements to the UI
+hiddenElements.forEach(hiddenElement => {
+  hiddenElement.removeAttribute("hidden");
+});
+
+// Wait for the view's ready change
 mapEl.addEventListener("arcgisViewReadyChange", async () => {
   mapEl.removeAttribute("hidden");
   // [1] Get the portal item reference for the alert and map's aria properties
