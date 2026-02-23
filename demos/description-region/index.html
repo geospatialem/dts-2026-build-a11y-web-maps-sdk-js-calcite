@@ -12,8 +12,8 @@
   </head>
 
   <body>
-    <calcite-shell content-behind>
-      <calcite-loader label="Loading map" text="Loading..."></calcite-loader>
+    <calcite-loader label="Loading map" text="Loading..."></calcite-loader>
+    <calcite-shell hidden content-behind>
       <calcite-navigation navigation-action slot="header" id="nav">
         <calcite-navigation-logo icon="accessibility" alt="" slot="logo" heading="Map description and regions"></calcite-navigation-logo>
         <calcite-action-bar layout="horizontal" expand-disabled slot="content-end">
@@ -28,7 +28,7 @@
     </calcite-shell>
 
     <!-- Demo template interactive elements -->
-    <calcite-alert id="alert-el" aria-live="polite" open icon="map-information" placement="bottom-end">
+    <calcite-alert hidden id="alert-el" aria-live="polite" open icon="map-information" placement="bottom-end">
       <div id="alert-title" slot="title">Loading the map...</div>
       <div slot="message">To dismiss this alert, select the close button.</div>
     </calcite-alert>
@@ -41,7 +41,7 @@
           <calcite-menu-item text="Accessibility: ArcGIS Maps SDK for JavaScript" icon-end="launch" href="https://developers.arcgis.com/javascript/latest/accessibility" target="_blank"></calcite-menu-item>
           <calcite-menu-item text="Esri accessibility community" icon-end="launch" href="https://esriurl.com/a11y-community" target="_blank"></calcite-menu-item>
         </calcite-menu>
-        <calcite-notice open slot="footer" width="full" scale="s">
+        <calcite-notice id="sheet-note" hidden open slot="footer" width="full" scale="s">
           <span slot="title">Note</span>
           <span slot="message">
             This is a demonstration application showcasing platform
