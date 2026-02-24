@@ -1,5 +1,4 @@
 const mapEl = document.querySelector("arcgis-map");
-const searchEl = document.querySelector("arcgis-search");
 
 const navigationEl = document.getElementById("nav");
 const panelEl = document.getElementById("sheet-panel");
