@@ -1,15 +1,7 @@
 const mapEl = document.querySelector("arcgis-map");
 await mapEl?.viewOnReady();
 
-const searchEl = document.querySelector("arcgis-search");
 const toggleScaleEl = document.getElementById("toggle-scale");
-
-if (searchEl) {
-  searchEl.addEventListener("arcgisSearchComplete", (event) => {
-    console.log("arcgisSearchComplete", event.detail, mapEl.popup);
-    mapEl?.popup?.watch()
-  });
-}
 
 if (toggleScaleEl && mapEl) {
   toggleScaleEl.addEventListener("click", () => {
