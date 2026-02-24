@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" />
+  <title>Visual Scale - 2026 Esri Developer & Technology Summit</title>
+
+  <script type="module" src="https://js.arcgis.com/5.0/"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <calcite-shell content-behind>
+    <calcite-navigation slot="header" id="nav">
+      <calcite-navigation-logo icon="accessibility" alt="Application logo" slot="logo" heading="Visual Scale"
+        description="Esri Developer & Technology Summit 2025"></calcite-navigation-logo>
+      <calcite-action id="toggle-scale" text="Toggle mode" icon="change-font-size" slot="content-end"></calcite-action>
+      <calcite-tooltip placement="left" reference-element="toggle-scale" slot="content-end">Toggle
+        scale</calcite-tooltip>
+
+    </calcite-navigation>
+    <arcgis-map item-id="05e015c5f0314db9a487a9b46cb37eca">
+
+      <arcgis-zoom slot="top-left"></arcgis-zoom>
+      <arcgis-home slot="top-left"></arcgis-home>
+      <arcgis-expand slot="top-right" mode="floating">
+        <arcgis-legend></arcgis-legend>
+      </arcgis-expand>
+      <arcgis-expand slot="bottom-left">
+        <arcgis-basemap-gallery></arcgis-basemap-gallery>
+      </arcgis-expand>
+    </arcgis-map>
+  </calcite-shell>
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>
