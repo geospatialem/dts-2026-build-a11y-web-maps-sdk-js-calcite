@@ -76,7 +76,7 @@ async function loadModuleAndRun() {
     // Update the basemap's language
     mapEl.map = {
       basemap: new Basemap({
-          style: {
+        style: {
           id: "arcgis/dark-gray/labels",
           language: languageCode,
         },
