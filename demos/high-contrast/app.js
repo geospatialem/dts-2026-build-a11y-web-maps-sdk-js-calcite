@@ -46,7 +46,7 @@ async function loadModuleAndRun() {
         style: {
         id: "arcgis/dark-gray/labels",
         // Get the language from the body
-        language: document.body.lang,
+        language: document.documentElement.lang,
       },
     }),
     layers: [highContrastLightTileLayer]
@@ -72,7 +72,7 @@ async function loadModuleAndRun() {
   // Update the language
   const updateLanguage = (languageCode) => {
     // Update the HTML body's language
-    document.body.setAttribute("lang", languageCode);
+    document.documentElement.setAttribute("lang", languageCode);
     // Update the basemap's language
     mapEl.map = {
       basemap: new Basemap({
