@@ -28,14 +28,6 @@ body,
   --calcite-color-brand: #000;
   --calcite-color-focus: var(--calcite-color-brand);
 }
-
-/* Dark mode */
-body.calcite-mode-dark,
-.calcite-mode-dark :focus {
-  --calcite-color-brand: #FEFE4D;
-  --calcite-color-focus: var(--calcite-color-brand);
-}
-
 .animation-controls {
   display: grid;
   gap: 0.75rem;
@@ -48,4 +40,20 @@ body.calcite-mode-dark,
 }
 .info-panel {
   max-width: 500px;
+}
+/* Custom styling using Calcite's semantic tokens */
+/* Resource: https://developers.arcgis.com/calcite-design-system/foundations/tokens/usage */
+
+/* Light mode */
+body,
+:focus {
+  --calcite-color-brand: #000;
+  --calcite-color-focus: var(--calcite-color-brand);
+}
+
+/* Dark mode */
+body.calcite-mode-dark,
+.calcite-mode-dark :focus {
+  --calcite-color-brand: #FEFE4D;
+  --calcite-color-focus: var(--calcite-color-brand);
 }
