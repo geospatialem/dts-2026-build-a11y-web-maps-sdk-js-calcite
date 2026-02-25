@@ -44,7 +44,7 @@ async function loadModuleAndRun() {
   mapEl.map = {
     basemap: new Basemap({
       style: {
-        id: "arcgis/dark-gray/labels",
+        id: `arcgis/${mode}-gray/labels`,
         // Get the language from the body
         language: document.documentElement.lang,
       },
@@ -77,7 +77,7 @@ async function loadModuleAndRun() {
     mapEl.map = {
       basemap: new Basemap({
         style: {
-          id: "arcgis/dark-gray/labels",
+          id: `arcgis/${mode}-gray/labels`,
           language: languageCode,
         },
       }),
@@ -121,11 +121,8 @@ function handleModeChange() {
   alertTitleEl.innerText = "Loading the map...";
   mode = mode === "dark" ? "light" : "dark";
   const isDarkMode = mode === "dark";
-  if (mode === "dark") {
-    mapEl.map.layers = [highContrastDarkTileLayer]
-  } else {
-    mapEl.map.layers = [highContrastLightTileLayer]
-  }
+  mapEl.map.basemap.style.id = `arcgis/${mode}-gray/labels`;
+  mapEl.map.layers = isDarkMode ? [highContrastDarkTileLayer] : [highContrastLightTileLayer];
   toggleModeEl.icon = isDarkMode ? "moon" : "brightness";
   document.body.classList.toggle("calcite-mode-dark");
   // Provide context to the alert and shift focus
