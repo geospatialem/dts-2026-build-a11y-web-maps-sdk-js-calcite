@@ -13,7 +13,9 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
 2. [Visual Scale](demos/visual-scale/)
 3. [Expand Component](demos/expand-components/)
 4. [Reduced Motion](demos/reduced-motion)
-5. [Consistent Focus](demos/consistent-focus)
+5. [High Contrast](demos/high-contrast/)
+   - Showcase high-contrast basemaps and Calcite theming to improve perceivability for users with low vision in line with [WCAG's 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) Success Criterion.
+6. [Consistent focus](demos/consistent-focus)
 
 ## Resources
 
