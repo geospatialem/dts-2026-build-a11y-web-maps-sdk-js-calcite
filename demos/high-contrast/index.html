@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo: High contrast</title>
+    <!-- Build info: https://js.arcgis.com/5.0/info.html -->
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+    <!-- Customized JS and CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./token.js"></script><!-- **NOTE**: This API key is set to expire at the end of March 2026, and must be replaced by your own token -->
+    <script src="./app.js" defer></script>
+  </head>
+
+  <body>
+    <calcite-loader label="Loading map" text="Loading..."></calcite-loader>
+    <calcite-shell content-behind>
+      <calcite-navigation navigation-action slot="header" id="nav">
+        <calcite-navigation-logo icon="accessibility" slot="logo" heading="High contrast"></calcite-navigation-logo>
+        <calcite-action-bar layout="horizontal" expand-disabled slot="content-end">
+          <calcite-action id="toggle-mode" text="Toggle mode" icon="brightness"></calcite-action>
+        </calcite-action-bar>
+
+        <calcite-tooltip placement="bottom" reference-element="toggle-mode" slot="content-end">Toggle mode</calcite-tooltip>
+      </calcite-navigation>
+
+      <arcgis-map id="map-el" center="0, 51" zoom="5">
+        <!-- Basemap reference layer language combobox -->
+        <div id="basemapLanguage" slot="top-right">
+          <calcite-label>Basemap language</calcite-label>
+          <calcite-combobox id="languageCombobox" label="Basemap language selection" selection-mode="single" clear-disabled></calcite-combobox>
+        </div>
+      </arcgis-map>
+    </calcite-shell>
+
+    <!-- Demo template interactive elements -->
+    <calcite-alert id="alert-el" aria-live="polite" icon="map-information" label="Map status" placement="bottom-end">
+      <div id="alert-title" slot="title">Loading the map...</div>
+      <div slot="message">To dismiss this alert, select the close button.</div>
+    </calcite-alert>
+
+    <calcite-sheet id="sheet" label="2026 accessibility resources" display-mode="float" width-scale="m">
+      <calcite-panel heading="Accessibility resources" description="Helpful resources and links" closable id="sheet-panel">
+        <calcite-menu layout="vertical" label="2026 Esri Developer & Technology Summit Menu">
+          <calcite-menu-item text="GitHub repository" icon-end="launch" href="https://github.com/geospatialem/dts-2026-build-a11y-web-maps-sdk-js-calcite" target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Accessibility: Calcite Design System" icon-end="launch" href="https://developers.arcgis.com/calcite-design-system/foundations/accessibility/" target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Accessibility: ArcGIS Maps SDK for JavaScript" icon-end="launch" href="https://developers.arcgis.com/javascript/latest/accessibility" target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Esri accessibility community" icon-end="launch" href="https://esriurl.com/a11y-community" target="_blank"></calcite-menu-item>
+        </calcite-menu>
+        <calcite-notice open slot="footer" width="full" scale="s">
+          <span slot="title">Note</span>
+          <span slot="message">
+            This is a demonstration application showcasing platform
+            functionality. While Esri strives to ensure the sample is accurate,
+            it may not reflect implementation behavior in certain
+            environments.</span>
+        </calcite-notice>
+      </calcite-panel>
+    </calcite-sheet>
+  </body>
+</html>
