@@ -121,7 +121,7 @@ function handleModeChange() {
   alertTitleEl.innerText = "Loading the map...";
   mode = mode === "dark" ? "light" : "dark";
   const isDarkMode = mode === "dark";
-  if (mode == "dark") {
+  if (mode === "dark") {
     mapEl.map.layers = [highContrastDarkTileLayer]
   } else {
     mapEl.map.layers = [highContrastLightTileLayer]
