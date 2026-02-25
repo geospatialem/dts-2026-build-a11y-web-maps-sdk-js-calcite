@@ -95,7 +95,7 @@ async function loadModuleAndRun() {
 
     if (alertEl.open) {
       (async () => {
-        await document.querySelector("calcite-combobox").componentOnReady();
+        await languageCombobox.componentOnReady();
         requestAnimationFrame(() => alertEl.setFocus());
       })();
     } else {
