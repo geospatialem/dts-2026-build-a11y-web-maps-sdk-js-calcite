@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expand Component - 2026 Esri Developer & Technology Summit</title>
+
+  <script type="module" src="https://js.arcgis.com/5.0/"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <calcite-shell content-behind>
+
+    <calcite-navigation navigation-action slot="header" id="nav">
+      <calcite-navigation-logo icon="accessibility" alt="Application logo" slot="logo" heading="Expand Component"
+        description="Esri Developer & Technology Summit 2026"></calcite-navigation-logo>
+    </calcite-navigation>
+    <arcgis-map item-id="05e015c5f0314db9a487a9b46cb37eca" popup-component-enabled>
+      <arcgis-home slot="top-right"></arcgis-home>
+      <arcgis-expand slot="top-right" expanded close-on-esc-disable focus-trap-disabled>
+        <arcgis-search></arcgis-search>
+      </arcgis-expand>
+    </arcgis-map>
+    <calcite-sheet id="sheet" display-mode="float" width-scale="m">
+      <calcite-panel heading="Accessibility resources" description="Helpful resources and links" closable
+        id="sheet-panel">
+        <calcite-menu layout="vertical" label="2026 Esri Developer & Technology Summit Menu">
+          <calcite-menu-item text="GitHub repository" icon-end="launch"
+            href="https://github.com/geospatialem/dts-2026-build-a11y-web-maps-sdk-js-calcite"
+            target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Accessibility: Calcite Design System" icon-end="launch"
+            href="https://developers.arcgis.com/calcite-design-system/foundations/accessibility/"
+            target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Accessibility: ArcGIS Maps SDK for JavaScript" icon-end="launch"
+            href="https://developers.arcgis.com/javascript/latest/accessibility" target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Esri accessibility community" icon-end="launch"
+            href="https://esriurl.com/a11y-community" target="_blank"></calcite-menu-item>
+        </calcite-menu>
+        <calcite-notice open slot="footer" width="full" scale="s">
+          <span slot="title">Note</span>
+          <span slot="message">
+            This is a demonstration application showcasing platform
+            functionality. While Esri strives to ensure the sample is accurate,
+            it may not reflect implementation behavior in certain
+            environments.</span>
+        </calcite-notice>
+      </calcite-panel>
+    </calcite-sheet>
+  </calcite-shell>
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>
