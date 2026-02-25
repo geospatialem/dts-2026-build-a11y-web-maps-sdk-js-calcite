@@ -28,18 +28,18 @@
         <!-- Basemap reference layer language combobox -->
         <div id="basemapLanguage" slot="top-right">
           <calcite-label>Basemap language</calcite-label>
-          <calcite-combobox id="languageCombobox" selection-mode="single" clear-disabled></calcite-combobox>
+          <calcite-combobox id="languageCombobox" label="Basemap language selection" selection-mode="single" clear-disabled></calcite-combobox>
         </div>
       </arcgis-map>
     </calcite-shell>
 
     <!-- Demo template interactive elements -->
-    <calcite-alert id="alert-el" aria-live="polite" icon="map-information" placement="bottom-end">
+    <calcite-alert id="alert-el" aria-live="polite" icon="map-information" label="Map status" placement="bottom-end">
       <div id="alert-title" slot="title">Loading the map...</div>
       <div slot="message">To dismiss this alert, select the close button.</div>
     </calcite-alert>
 
-    <calcite-sheet id="sheet" display-mode="float" width-scale="m">
+    <calcite-sheet id="sheet" label="2026 accessibility resources" display-mode="float" width-scale="m">
       <calcite-panel heading="Accessibility resources" description="Helpful resources and links" closable id="sheet-panel">
         <calcite-menu layout="vertical" label="2026 Esri Developer & Technology Summit Menu">
           <calcite-menu-item text="GitHub repository" icon-end="launch" href="https://github.com/geospatialem/dts-2026-build-a11y-web-maps-sdk-js-calcite" target="_blank"></calcite-menu-item>
