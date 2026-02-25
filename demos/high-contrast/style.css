@@ -32,6 +32,7 @@ calcite-action-bar {
 
 /* High contrast light mode theme */
 body {
+  --calcite-color-brand: #003e99;
   --calcite-color-brand-hover: #1F55A5;
   --calcite-color-brand-press: #295DA9;
   --calcite-color-background: #d9d9d9;
