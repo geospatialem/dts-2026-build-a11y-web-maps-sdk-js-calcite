@@ -43,7 +43,7 @@ async function loadModuleAndRun() {
   // Initial map configuration
   mapEl.map = {
     basemap: new Basemap({
-        style: {
+      style: {
         id: "arcgis/dark-gray/labels",
         // Get the language from the body
         language: document.documentElement.lang,
