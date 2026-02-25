@@ -110,7 +110,6 @@ mapEl.addEventListener("arcgisViewReadyChange", async () => {
   document.querySelector("calcite-loader").hidden = true;
 });
 
-
 toggleModeEl.addEventListener("click", () => handleModeChange());
 navigationEl.addEventListener("calciteNavigationActionSelect", () =>
   handleSheetOpen(),
