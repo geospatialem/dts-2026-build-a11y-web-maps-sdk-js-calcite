@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo: Map description and ARIA regions</title>
+    <!-- Build info: https://js.arcgis.com/5.0/info.html -->
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+    <!-- Customized JS and CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+
+  <body>
+    <calcite-loader label="Loading map" text="Loading..."></calcite-loader>
+    <calcite-shell hidden content-behind>
+      <calcite-navigation navigation-action slot="header" id="nav">
+        <calcite-navigation-logo icon="accessibility" alt="" slot="logo" heading="Consistent focus"></calcite-navigation-logo>
+        <calcite-action-bar layout="horizontal" expand-disabled slot="content-end">
+          <calcite-action id="toggle-mode" text="Toggle mode" icon="brightness"></calcite-action>
+        </calcite-action-bar>
+
+        <calcite-tooltip placement="bottom" reference-element="toggle-mode" slot="content-end">Toggle mode</calcite-tooltip>
+      </calcite-navigation>
+
+    <calcite-shell-panel slot="panel-start" display-mode="float-content">
+      <calcite-action-bar id="custom-action-bar" slot="action-bar">
+        <calcite-action data-action-id="layer-effects" icon="effects" text="Layer effects"></calcite-action>
+        <calcite-action data-action-id="legend" icon="legend" text="Legend"></calcite-action>
+      </calcite-action-bar>
+      <!-- Layer effects -->
+      <calcite-panel heading="Layer effects" height-scale="l" data-panel-id="layer-effects" closable closed>
+        <!-- Bloom effect -->
+        <calcite-block open heading="Bloom" description="Apply a neon-like glow">
+          <!-- Bloom enabled -->
+          <calcite-block-section id="bloom-effect" open text="Apply bloom effect" toggle-display="switch">
+            <!-- Intensity -->
+            <calcite-label for="bloom-intensity">Bloom intensity</calcite-label>
+            <calcite-slider id="bloom-intensity" value="1.5" min="0" max="10" step="0.5" label-ticks ticks="2"></calcite-slider>
+            <!-- Radius-->
+            <calcite-label for="bloom-radius">Bloom radius</calcite-label>
+            <calcite-slider id="bloom-radius" value="0.5" min="0" max="1" step="0.5" label-ticks ticks="0.25"></calcite-slider>
+            <!-- Threshold -->
+            <calcite-label for="bloom-threshold">Bloom threshold</calcite-label>
+            <calcite-slider id="bloom-threshold" value="0.1" min="0" max="0.5" step="0.1" label-ticks ticks="0.25"></calcite-slider>
+          </calcite-block-section>
+        </calcite-block>
+        <!-- Drop shadow effect -->
+        <calcite-block open heading="Drop shadow" description="Apply a drop shadow">
+          <!-- Shadow enabled -->
+          <calcite-block-section id="shadow-effect" text="Apply drop shadow effect" toggle-display="switch">
+            <!-- Shadow length -->
+            <calcite-label for="shadow-length">Shadow length</calcite-label>
+            <calcite-slider id="shadow-length" value="3" min="0" max="4" step="1" label-ticks ticks="1"></calcite-slider>
+            <!-- Shadow depth-->
+            <calcite-label for="shadow-depth">Shadow depth</calcite-label>
+            <calcite-slider id="shadow-depth" value="1" min="0" max="4" step="1" label-ticks ticks="1"></calcite-slider>
+            <!-- Shadow outline -->
+            <calcite-label for="shadow-outline">Shadow outline</calcite-label>
+            <calcite-slider id="shadow-outline" value="3" min="0" max="4" step="1" label-ticks ticks="1"></calcite-slider>
+          </calcite-block-section>
+        </calcite-block>
+      </calcite-panel>
+      <!-- Legend Panel -->
+      <calcite-panel heading="Legend" height-scale="l" data-panel-id="legend" closable closed>
+        <arcgis-legend reference-element="arcgis-map" position="bottom-right"></arcgis-legend>
+      </calcite-panel>
+    </calcite-shell-panel>
+
+
+      <arcgis-map id="map-el" item-id="05e015c5f0314db9a487a9b46cb37eca">
+        <arcgis-home slot="top-right"></arcgis-home>
+        <arcgis-expand id="expand-el" focus-trap-enabled="false" close-on-esc slot="top-right" mode="floating">
+          <arcgis-search id="search-el"></arcgis-search>
+        </arcgis-expand>
+        <arcgis-zoom slot="bottom-right"></arcgis-zoom>
+      </arcgis-map>
+      <span class="sr-only" aria-live="polite" id="assistive-context"></span>
+    </calcite-shell>
+
+    <calcite-sheet id="sheet" display-mode="float" width-scale="m">
+      <calcite-panel heading="Accessibility resources" description="Helpful resources and links" closable id="sheet-panel">
+        <calcite-menu layout="vertical" label="2026 Esri Developer & Technology Summit Menu">
+          <calcite-menu-item text="GitHub repository" icon-end="launch" href="https://github.com/geospatialem/dts-2026-build-a11y-web-maps-sdk-js-calcite" target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Accessibility: Calcite Design System" icon-end="launch" href="https://developers.arcgis.com/calcite-design-system/foundations/accessibility/" target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Accessibility: ArcGIS Maps SDK for JavaScript" icon-end="launch" href="https://developers.arcgis.com/javascript/latest/accessibility" target="_blank"></calcite-menu-item>
+          <calcite-menu-item text="Esri accessibility community" icon-end="launch" href="https://esriurl.com/a11y-community" target="_blank"></calcite-menu-item>
+        </calcite-menu>
+        <calcite-notice id="sheet-note" hidden open slot="footer" width="full" scale="s">
+          <span slot="title">Note</span>
+          <span slot="message">
+            This is a demonstration application showcasing platform
+            functionality. While Esri strives to ensure the sample is accurate,
+            it may not reflect implementation behavior in certain
+            environments.</span>
+        </calcite-notice>
+      </calcite-panel>
+    </calcite-sheet>
+  </body>
+</html>
