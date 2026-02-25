@@ -10,7 +10,8 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
 
 1. [Map Description and Live Regions](demos/description-region/index.html)
    - Provide context as to when the map has loaded and include a description when the map is in focus to further [WCAG's 1.3.1: Info and Relationships](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html) Success Criterion.
-2. [Visual Scale](demos/visual-scale/) 
+2. [Visual Scale](demos/visual-scale/)
+3. [High Contrast](demos/high-contrast/)
 
 ## Resources
 
