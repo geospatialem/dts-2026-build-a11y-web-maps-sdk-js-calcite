@@ -117,7 +117,6 @@ navigationEl.addEventListener("calciteNavigationActionSelect", () =>
 );
 panelEl.addEventListener("calcitePanelClose", () => handlePanelClose());
 
-
 function handleModeChange() {
   alertTitleEl.innerText = "Loading the map...";
   mode = mode === "dark" ? "light" : "dark";
