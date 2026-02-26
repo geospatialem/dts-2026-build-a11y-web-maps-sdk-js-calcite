@@ -63,13 +63,11 @@
       </calcite-panel>
       <!-- Legend Panel -->
       <calcite-panel heading="Legend" height-scale="l" data-panel-id="legend" closable closed>
-        <arcgis-legend></arcgis-legend>
+        <arcgis-legend reference-element="map-el"></arcgis-legend>
       </calcite-panel>
     </calcite-shell-panel>
 
-
-      <!-- <arcgis-map id="map-el" item-id="c2a3444863f2466aaad9efa6e65063e1" basemap="gray"> -->
-        <arcgis-map id="map-el" item-id="628500cb6c834ed98d8b9fc0c4c06e07" basemap="gray" zoom="14">
+        <arcgis-map id="map-el" item-id="628500cb6c834ed98d8b9fc0c4c06e07">
         <arcgis-home slot="top-right"></arcgis-home>
         <arcgis-expand id="expand-el" focus-trap-enabled="false" close-on-esc slot="top-right" mode="floating">
           <arcgis-search id="search-el"></arcgis-search>
