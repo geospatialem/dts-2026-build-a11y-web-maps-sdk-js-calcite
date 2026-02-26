@@ -1,7 +1,9 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
+
 const toggleModeEl = document.getElementById("toggle-mode");
 const navigationEl = document.getElementById("nav");
-const panelEl = document.getElementById("sheet-panel");
-const sheetEl = document.getElementById("sheet");
+const { panelEl, sheetEl } = mountAccessibilitySheet();
 const mapEl = document.getElementById("map-el");
 const actionBarEl = document.getElementById("custom-action-bar");
 const searchEl = document.querySelector("arcgis-search");
@@ -15,21 +17,20 @@ let popupClosePropertyChangeHandler = null;
 let popupCloseHandler = null;
 
 function registerEventListeners() {
-  panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
-  navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
+  setupSheetInteractions({ navigationEl, panelEl, sheetEl });
   searchEl?.addEventListener("arcgisSearchComplete", handleSearchComplete);
 }
 
 // Wait for the view's ready change
 mapEl.addEventListener("arcgisViewReadyChange", async () => {
   registerEventListeners();
-  
+
   const { portalItem } = mapEl.map;
   mapEl.aria = {
     label: portalItem.title,
     description: portalItem.snippet,
   };
-  
+
   // Wait for the internal view to be ready
   // [2] Once ready provide context the map has loaded
   await mapEl.viewOnReady();
@@ -40,10 +41,6 @@ mapEl.addEventListener("arcgisViewReadyChange", async () => {
 });
 
 toggleModeEl.addEventListener("click", () => handleModeChange());
-navigationEl.addEventListener("calciteNavigationActionSelect", () =>
-  handleSheetOpen(),
-);
-panelEl.addEventListener("calcitePanelClose", () => handlePanelClose());
 
 
 function handleModeChange() {
@@ -54,15 +51,6 @@ function handleModeChange() {
   mapEl.basemap = isDarkMode ? "dark-gray" : "gray";
   document.body.classList.toggle("calcite-mode-dark");
   document.querySelector("calcite-loader").hidden = true;
-}
-
-function handleSheetOpen() {
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  sheetEl.open = false;
 }
 
 // Active widget
@@ -100,7 +88,7 @@ shadowBlockSectionEl.addEventListener("calciteBlockSectionToggle", (evt) => {
   }
 });
 
-  // Layer effect values
+// Layer effect values
 const sliderEls = document.querySelectorAll("calcite-slider");
 sliderEls?.forEach((sliderEl) => {
   sliderEl.addEventListener("calciteSliderInput", () => {
@@ -167,22 +155,22 @@ actionBarEl.addEventListener("click", handleActionBarClick);
 
 // Panel interaction
 const panelEls = [...document.querySelectorAll("calcite-panel")];
-  panelEls.forEach((panelEl) => {
-    panelEl.addEventListener("calcitePanelClose", () => {
-      if (panelEl.id !== "sheet-panel") {
-        document.querySelector(`[data-action-id=${activeWidget}]`).closed = true;
-        document.querySelector(`[data-action-id=${activeWidget}]`).active = false;
-        document.querySelector(`[data-action-id=${activeWidget}]`).setFocus();
-        activeWidget = null;
-      }
-    });
+panelEls.forEach((panelEl) => {
+  panelEl.addEventListener("calcitePanelClose", () => {
+    if (panelEl.id !== "sheet-panel") {
+      document.querySelector(`[data-action-id=${activeWidget}]`).closed = true;
+      document.querySelector(`[data-action-id=${activeWidget}]`).active = false;
+      document.querySelector(`[data-action-id=${activeWidget}]`).setFocus();
+      activeWidget = null;
+    }
   });
+});
 
-  // Adjust the Map copyright when the Action Bar's expansion is toggled
-  actionBarEl.addEventListener("calciteActionBarToggle", () => {
-    const expandText = actionBarEl.expanded ? "135px" : "45px";
-    mapEl.style.setProperty("--arcgis-layout-overlay-space-left", expandText);
-  });
+// Adjust the Map copyright when the Action Bar's expansion is toggled
+actionBarEl.addEventListener("calciteActionBarToggle", () => {
+  const expandText = actionBarEl.expanded ? "135px" : "45px";
+  mapEl.style.setProperty("--arcgis-layout-overlay-space-left", expandText);
+});
 
 /**
  * Accessibility flow after a search completes:
@@ -292,7 +280,7 @@ function focusSearchInput() {
 }
 
 // Shift focus to the popup when opened
-popupEl.addEventListener("arcgisPropertyChange", ()=> {
+popupEl.addEventListener("arcgisPropertyChange", () => {
   if (popupEl.active) {
     popupEl.setFocus();
   }
@@ -303,4 +291,3 @@ document.querySelector("arcgis-expand").addEventListener("arcgisPropertyChange",
     searchEl.setFocus();
   }
 })
-

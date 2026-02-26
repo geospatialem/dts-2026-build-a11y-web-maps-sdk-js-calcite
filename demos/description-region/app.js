@@ -1,7 +1,9 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
+
 const toggleModeEl = document.getElementById("toggle-mode");
 const navigationEl = document.getElementById("nav");
-const panelEl = document.getElementById("sheet-panel");
-const sheetEl = document.getElementById("sheet");
+const { panelEl, sheetEl } = mountAccessibilitySheet({ hideNote: true });
 const mapEl = document.getElementById("map-el");
 const alertEl = document.getElementById("alert-el");
 const alertTitleEl = document.getElementById("alert-title");
@@ -22,7 +24,7 @@ mapEl.addEventListener("arcgisViewReadyChange", async () => {
     label: portalItem.title,
     description: portalItem.snippet,
   };
-  
+
   // Wait for the internal view to be ready
   // [2] Once ready provide context the map has loaded
   await mapEl.viewOnReady();
@@ -41,10 +43,7 @@ mapEl.addEventListener("arcgisViewReadyChange", async () => {
 let mode = "light";
 
 toggleModeEl.addEventListener("click", () => handleModeChange());
-navigationEl.addEventListener("calciteNavigationActionSelect", () =>
-  handleSheetOpen(),
-);
-panelEl.addEventListener("calcitePanelClose", () => handlePanelClose());
+setupSheetInteractions({ navigationEl, panelEl, sheetEl });
 
 
 function handleModeChange() {
@@ -63,15 +62,6 @@ function handleModeChange() {
   const modeDescription = mode === "light" ? "polygons" : "clusters";
   // [4] Inform assistive technologies of the mode change
   assistiveContextEl.textContent = `Switched to ${mode} mode with data displayed as ${modeDescription}. Toggle to ${inverseMode} mode.`;
-}
-
-function handleSheetOpen() {
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  sheetEl.open = false;
 }
 
 // [5] When the alert is open, set focus on the component

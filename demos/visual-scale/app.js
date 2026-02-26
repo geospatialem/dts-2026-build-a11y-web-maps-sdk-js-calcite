@@ -1,9 +1,11 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
+
 const mapEl = document.querySelector("arcgis-map");
 const toggleScaleEl = document.getElementById("toggle-scale");
 
 const navigationEl = document.getElementById("nav");
-const panelEl = document.getElementById("sheet-panel");
-const sheetEl = document.getElementById("sheet");
+const { panelEl, sheetEl } = mountAccessibilitySheet();
 
 await mapEl?.viewOnReady();
 // Toggle the visual scale of slotted components in the map when the button is clicked
@@ -19,16 +21,4 @@ if (toggleScaleEl && mapEl) {
   });
 }
 
-panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
-navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
-
-function handleSheetOpen() {
-  if (!sheetEl || !panelEl) return;
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  if (!sheetEl) return;
-  sheetEl.open = false;
-}
+setupSheetInteractions({ navigationEl, panelEl, sheetEl });

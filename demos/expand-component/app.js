@@ -1,46 +1,41 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
+
 const mapEl = document.querySelector("arcgis-map");
 const searchEl = document.querySelector("arcgis-search");
 
 const navigationEl = document.getElementById("nav");
-const panelEl = document.getElementById("sheet-panel");
-const sheetEl = document.getElementById("sheet");
+const { panelEl, sheetEl } = mountAccessibilitySheet();
 
+// Active popup + handler references used to prevent listener duplication.
 let activePopupEl = null;
 let popupOpenPropertyChangeHandler = null;
 let popupClosePropertyChangeHandler = null;
 let popupCloseHandler = null;
 
-await mapEl?.viewOnReady();
-registerEventListeners();
+await initializeApp();
+
+async function initializeApp() {
+  await mapEl?.viewOnReady();
+  registerEventListeners();
+}
 
 function registerEventListeners() {
-  panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
-  navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
+  setupSheetInteractions({ navigationEl, panelEl, sheetEl });
   searchEl?.addEventListener("arcgisSearchComplete", handleSearchComplete);
-}
-
-function handleSheetOpen() {
-  if (!sheetEl || !panelEl) return;
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  if (!sheetEl) return;
-  sheetEl.open = false;
 }
 
 /**
  * Accessibility flow after a search completes:
- * 1) Wait once for the popup to open.
- * 2) Move focus into the popup so keyboard users land on result content.
- * 3) Wait once for popup close, then return focus to the search box.
- * 4) Once focus returns to the search component users can clear using esc key
+ * 1) Wait for popup open (or focus immediately if already open).
+ * 2) Move focus into popup content.
+ * 3) Return focus to Search when popup closes.
  */
 function handleSearchComplete() {
   const popupEl = getPopupElement();
   if (!popupEl) return;
 
+  // Ensure each search starts with a clean listener state.
   clearPopupListeners();
   activePopupEl = popupEl;
 
@@ -62,8 +57,8 @@ function handleSearchComplete() {
 }
 
 /**
- * Removes existing popup event listeners before creating new ones.
- * This prevents duplicate focus transitions after multiple searches.
+ * Removes existing popup listeners before new ones are registered.
+ * Prevents duplicate focus transitions after multiple searches.
  */
 function clearPopupListeners() {
   removePopupOpenListener();
@@ -71,6 +66,9 @@ function clearPopupListeners() {
   activePopupEl = null;
 }
 
+// Listen for popup close in two ways:
+// - arcgisClose for direct close actions
+// - open property change for programmatic close/state changes
 function registerPopupCloseListeners(popupEl) {
   popupCloseHandler = () => {
     focusSearchInput();
@@ -113,24 +111,16 @@ function removePopupCloseListeners() {
   popupClosePropertyChangeHandler = null;
 }
 
-/**
- * Returns the popup element 
- */
+// Returns the popup component associated with the map component.
 function getPopupElement() {
   return mapEl?.popupElement ?? null;
 }
 
-/**
- * Set focus to the popup component.
- */
 function focusPopupElement(popupEl) {
   if (!popupEl) return;
   popupEl?.setFocus();
 }
 
-/**
- * Return focus to the search component.
- */
 function focusSearchInput() {
   if (!searchEl) return;
   searchEl.setFocus();

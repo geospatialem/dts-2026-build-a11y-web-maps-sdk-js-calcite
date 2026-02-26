@@ -1,8 +1,4 @@
-html,
-body {
-  margin: 0;
-  height: 100%;
-}
+@import "../shared/demo-base.css";
 
 #basemapLanguage {
   width: 200px;
@@ -20,10 +16,6 @@ calcite-menu-item {
 
 calcite-navigation-logo {
   --calcite-navigation-logo-heading-color: var(--calcite-color-brand);
-}
-
-calcite-shell-panel[slot="panel-start"] calcite-panel {
-  border-top: 0;
 }
 
 calcite-action-bar {

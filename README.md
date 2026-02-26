@@ -11,11 +11,54 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
 1. [Map Description and Live Regions](demos/description-region/index.html)
    - Provide context as to when the map has loaded and include a description when the map is in focus to further [WCAG's 1.3.1: Info and Relationships](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html) Success Criterion.
 2. [Visual Scale](demos/visual-scale/)
+   - Demonstrates how to use the `visualScale` property to increase the size of map UI controls, including Expand, Zoom, and Home.
 3. [Expand Component](demos/expand-component/)
+   - Demonstrates Expand behavior with focus trap handling using focus-trap-disabled and close-on-esc-disabled.
+   - Shows explicit focus management between Search and Popup: focus moves to the popup after search completes, then returns to Search when the popup closes.
+   - Supports both the default locator and a layer-based search source in the web map, including census tract search with keyboard access to popup details.
 4. [Reduced Motion](demos/reduced-motion)
+   - Shows how map animations can respect the user’s motion preference.
+   - Includes controls to explicitly play or pause animation.
+   - Note: disabling animation affects all animation, including goTo zoom transitions.
 5. [High Contrast](demos/high-contrast/)
    - Showcase high-contrast basemaps and Calcite theming to improve perceivability for users with low vision in line with [WCAG's 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) Success Criterion.
 6. [Consistent focus](demos/consistent-focus)
+7. [Feature Panel](demos/features-panel)
+   - Uses the `arcgis-feature` component to display features in the current map extent within a side panel, with keyboard-accessible navigation through feature results.
+   
+
+
+## Run locally
+
+These demos use JavaScript modules (including shared files in `demos/shared`), so they must be served over `http://`.
+Opening `index.html` files directly with `file://` may fail.
+
+### Option 1: Node (no install)
+
+1. Open a terminal in the repository root.
+2. Start a local server:
+
+   ```bash
+   npx serve .
+   ```
+
+3. Open a demo in your browser, for example:
+
+   ```text
+   http://localhost:3000/demos/features-panel/index.html
+   ```
+
+### Option 2: Node `http-server`
+
+```bash
+npx http-server -p 8080 .
+```
+
+Then open:
+
+```text
+http://localhost:8080/demos/expand-component/index.html
+```
 
 ## Resources
 
