@@ -128,12 +128,14 @@ const handleActionBarClick = ({ target }) => {
   }
 
   if (activeWidget) {
-    activeActionEl = document
-      .querySelector(`[data-action-id=${activeWidget}]`)
-      .removeAttribute("active");
-    activePanelEl = document.querySelector(
-      `[data-panel-id=${activeWidget}]`
-    ).closed = true;
+    const previousActionEl = document.querySelector(`[data-action-id=${activeWidget}]`);
+    if (previousActionEl) {
+      previousActionEl.removeAttribute("active");
+    }
+    const previousPanelEl = document.querySelector(`[data-panel-id=${activeWidget}]`);
+    if (previousPanelEl) {
+      previousPanelEl.closed = true;
+    }
   }
 
   const nextWidget = target.dataset.actionId;
