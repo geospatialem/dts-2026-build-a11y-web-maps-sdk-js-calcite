@@ -115,7 +115,7 @@ sliderEls?.forEach((sliderEl) => {
 
 // Bloom effect
 function updateBloom(bloomIntensity, bloomRadius, bloomThreshold) {
-  mapEl.map.layers._items[0].effect = `bloom(${bloomIntensity}, ${bloomRadius}px, ${bloomThreshold})`;
+  mapEl.map.layers.items[0].effect = `bloom(${bloomIntensity}, ${bloomRadius}px, ${bloomThreshold})`;
 }
 
 // Drop shadow effect
