@@ -24,6 +24,38 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
    - Showcase high-contrast basemaps and Calcite theming to improve perceivability for users with low vision in line with [WCAG's 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) Success Criterion.
 6. [Consistent focus](demos/consistent-focus)
 
+## Run locally
+
+These demos use JavaScript modules (including shared files in `demos/shared`), so they must be served over `http://`.
+Opening `index.html` files directly with `file://` may fail.
+
+### Option 1: Node (no install)
+
+1. Open a terminal in the repository root.
+2. Start a local server:
+
+   ```bash
+   npx serve .
+   ```
+
+3. Open a demo in your browser, for example:
+
+   ```text
+   http://localhost:3000/demos/features-panel/index.html
+   ```
+
+### Option 2: Node `http-server`
+
+```bash
+npx http-server -p 8080 .
+```
+
+Then open:
+
+```text
+http://localhost:8080/demos/expand-component/index.html
+```
+
 ## Resources
 
 - [Calcite Accessibility](https://developers.arcgis.com/calcite-design-system/foundations/accessibility)
