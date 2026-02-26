@@ -17,9 +17,6 @@
   let popupOpenWatchHandle = null;
   let popupCloseWatchHandle = null;
 
-  await mapEl?.viewOnReady();
-  registerEventListeners();
-
   function registerEventListeners() {
     panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
     navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
@@ -28,6 +25,8 @@
 
   // Wait for the view's ready change
   mapEl.addEventListener("arcgisViewReadyChange", async () => {
+    registerEventListeners();
+    
     const { portalItem } = mapEl.map;
     mapEl.aria = {
       label: portalItem.title,
