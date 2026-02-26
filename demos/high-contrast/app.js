@@ -74,6 +74,8 @@ async function loadModuleAndRun() {
     // Update the HTML body's language
     document.documentElement.setAttribute("lang", languageCode);
     // Update the basemap's language
+    const highContrastBasemapTileLayer = mode === "dark" ? highContrastDarkTileLayer : highContrastLightTileLayer;
+
     mapEl.map = {
       basemap: new Basemap({
         style: {
@@ -81,7 +83,7 @@ async function loadModuleAndRun() {
           language: languageCode,
         },
       }),
-      layers: [highContrastDarkTileLayer]
+      layers: [highContrastBasemapTileLayer]
     }
   };
 
