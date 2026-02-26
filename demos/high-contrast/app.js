@@ -1,3 +1,5 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+
 const toggleModeEl = document.getElementById("toggle-mode");
 const navigationEl = document.getElementById("nav");
 const panelEl = document.getElementById("sheet-panel");
@@ -51,7 +53,7 @@ async function loadModuleAndRun() {
     }),
     layers: [highContrastLightTileLayer]
   }
-  
+
   // Update combobox values with languages from rest endpoint
   const basemapStylesEndpoint = "https://basemapstyles-api.arcgis.com/arcgis/rest/services/styles/v2/styles/self";
   esriRequest(basemapStylesEndpoint, {
@@ -66,7 +68,7 @@ async function loadModuleAndRun() {
       // if the current basemap language is the same as the combobox item, select it
       comboboxItem.selected = mapEl.map.basemap.style.language === language.code;
       languageCombobox.appendChild(comboboxItem);
-   });
+    });
   });
 
   // Update the language
@@ -106,17 +108,14 @@ async function loadModuleAndRun() {
   });
 }
 
-mapEl.addEventListener("arcgisViewReadyChange", async () => {  
+mapEl.addEventListener("arcgisViewReadyChange", async () => {
   await mapEl.viewOnReady();
   // Hide the loader
   document.querySelector("calcite-loader").hidden = true;
 });
 
 toggleModeEl.addEventListener("click", () => handleModeChange());
-navigationEl.addEventListener("calciteNavigationActionSelect", () =>
-  handleSheetOpen(),
-);
-panelEl.addEventListener("calcitePanelClose", () => handlePanelClose());
+setupSheetInteractions({ navigationEl, panelEl, sheetEl });
 
 function handleModeChange() {
   alertTitleEl.innerText = "Loading the map...";
@@ -128,21 +127,12 @@ function handleModeChange() {
   document.body.classList.toggle("calcite-mode-dark");
   // Provide context to the alert and shift focus
   alertTitleEl.innerHTML = `Switched to ${mode} mode.`;
-  
+
   if (alertEl.open) {
     alertEl.setFocus();
   } else {
     alertEl.open = true;
   }
-}
-
-function handleSheetOpen() {
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  sheetEl.open = false;
 }
 
 // When the alert is open, set focus on the component

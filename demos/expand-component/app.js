@@ -1,3 +1,5 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+
 const mapEl = document.querySelector("arcgis-map");
 const searchEl = document.querySelector("arcgis-search");
 
@@ -14,20 +16,8 @@ await mapEl?.viewOnReady();
 registerEventListeners();
 
 function registerEventListeners() {
-  panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
-  navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
+  setupSheetInteractions({ navigationEl, panelEl, sheetEl });
   searchEl?.addEventListener("arcgisSearchComplete", handleSearchComplete);
-}
-
-function handleSheetOpen() {
-  if (!sheetEl || !panelEl) return;
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  if (!sheetEl) return;
-  sheetEl.open = false;
 }
 
 /**

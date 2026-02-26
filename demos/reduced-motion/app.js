@@ -1,3 +1,5 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+
 const mapEl = document.querySelector("arcgis-map");
 
 const navigationEl = document.getElementById("nav");
@@ -13,9 +15,7 @@ const reduceMotionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
 let animationEnabled = false;
 
 await mapEl?.viewOnReady();
-
-panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
-navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
+setupSheetInteractions({ navigationEl, panelEl, sheetEl });
 
 playAnimationsButtonEl?.addEventListener("click", handlePlayAnimations);
 pauseAnimationsButtonEl?.addEventListener("click", handlePauseAnimations);
@@ -24,17 +24,6 @@ reduceMotionMedia.addEventListener("change", handleMotionPreferenceChange);
 initializeMotionControls();
 
 // TODO wait for API issue then handle popup focus state
-
-function handleSheetOpen() {
-  if (!sheetEl || !panelEl) return;
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  if (!sheetEl) return;
-  sheetEl.open = false;
-}
 
 function initializeMotionControls() {
   updateMotionPreferenceLabel();

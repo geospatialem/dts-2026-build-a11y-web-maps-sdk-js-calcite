@@ -1,3 +1,5 @@
+import { setupSheetInteractions } from "../shared/shell-navigation.js";
+
 const mapEl = document.querySelector("arcgis-map");
 const toggleScaleEl = document.getElementById("toggle-scale");
 
@@ -19,16 +21,4 @@ if (toggleScaleEl && mapEl) {
   });
 }
 
-panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
-navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
-
-function handleSheetOpen() {
-  if (!sheetEl || !panelEl) return;
-  sheetEl.open = true;
-  panelEl.closed = false;
-}
-
-function handlePanelClose() {
-  if (!sheetEl) return;
-  sheetEl.open = false;
-}
+setupSheetInteractions({ navigationEl, panelEl, sheetEl });

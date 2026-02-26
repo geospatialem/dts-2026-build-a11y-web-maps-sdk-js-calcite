@@ -1,0 +1,9 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+calcite-shell-panel[slot="panel-start"] calcite-panel {
+  border-top: 0;
+}
