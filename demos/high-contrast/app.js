@@ -74,18 +74,15 @@ async function loadModuleAndRun() {
     // Update the HTML body's language
     document.documentElement.setAttribute("lang", languageCode);
     // Update the basemap's language
-    const highContrastBasemapTileLayer = mode === "dark" ? highContrastDarkTileLayer : highContrastLightTileLayer;
-
-      mapEl.map = {
-        basemap: new Basemap({
-          style: {
-            id: `arcgis/${mode}-gray/labels`,
-            language: languageCode,
-          },
-        }),
-        layers: [highContrastBasemapTileLayer]
-      }
-  };
+    mapEl.map = {
+      basemap: new Basemap({
+        style: {
+          id: `arcgis/${mode}-gray/labels`,
+          language: languageCode,
+        },
+      }),
+      layers: [highContrastDarkTileLayer]
+    }
 
   // When the Combobox value changes
   // 1. Update the language
