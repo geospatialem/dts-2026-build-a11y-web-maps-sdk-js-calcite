@@ -83,6 +83,7 @@ async function loadModuleAndRun() {
       }),
       layers: [highContrastDarkTileLayer]
     }
+  };
 
   // When the Combobox value changes
   // 1. Update the language
