@@ -1,11 +1,11 @@
 import { setupSheetInteractions } from "../shared/shell-navigation.js";
+import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
 
 const mapEl = document.querySelector("arcgis-map");
 const searchEl = document.querySelector("arcgis-search");
 
 const navigationEl = document.getElementById("nav");
-const panelEl = document.getElementById("sheet-panel");
-const sheetEl = document.getElementById("sheet");
+const { panelEl, sheetEl } = mountAccessibilitySheet();
 
 let activePopupEl = null;
 let popupOpenPropertyChangeHandler = null;

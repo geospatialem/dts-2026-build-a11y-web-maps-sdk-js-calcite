@@ -1,10 +1,10 @@
 import { setupSheetInteractions } from "../shared/shell-navigation.js";
+import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
 
 const mapEl = document.querySelector("arcgis-map");
 
 const navigationEl = document.getElementById("nav");
-const panelEl = document.getElementById("sheet-panel");
-const sheetEl = document.getElementById("sheet");
+const { panelEl, sheetEl } = mountAccessibilitySheet();
 
 const motionPreferenceStatusEl = document.getElementById("motion-preference-status");
 const playAnimationsButtonEl = document.getElementById("play-animations");

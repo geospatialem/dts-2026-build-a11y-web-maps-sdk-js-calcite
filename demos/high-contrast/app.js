@@ -1,9 +1,11 @@
 import { setupSheetInteractions } from "../shared/shell-navigation.js";
+import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
 
 const toggleModeEl = document.getElementById("toggle-mode");
 const navigationEl = document.getElementById("nav");
-const panelEl = document.getElementById("sheet-panel");
-const sheetEl = document.getElementById("sheet");
+const { panelEl, sheetEl } = mountAccessibilitySheet({
+  sheetLabel: "2026 accessibility resources"
+});
 const mapEl = document.getElementById("map-el");
 const alertEl = document.getElementById("alert-el");
 const alertTitleEl = document.getElementById("alert-title");
