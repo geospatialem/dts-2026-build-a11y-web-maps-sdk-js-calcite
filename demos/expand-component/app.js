@@ -5,13 +5,10 @@ const navigationEl = document.getElementById("nav");
 const panelEl = document.getElementById("sheet-panel");
 const sheetEl = document.getElementById("sheet");
 
-const [reactiveUtils] = await $arcgis.import(["esri/core/reactiveUtils"]);
-
-/**
- * Tracks active reactiveUtils watchers so repeated searches do not stack listeners.
- */
-let popupOpenWatchHandle = null;
-let popupCloseWatchHandle = null;
+let activePopupEl = null;
+let popupOpenPropertyChangeHandler = null;
+let popupClosePropertyChangeHandler = null;
+let popupCloseHandler = null;
 
 await mapEl?.viewOnReady();
 registerEventListeners();
@@ -41,40 +38,79 @@ function handlePanelClose() {
  * 4) Once focus returns to the search component users can clear using esc key
  */
 function handleSearchComplete() {
-  clearPopupWatchers();
+  const popupEl = getPopupElement();
+  if (!popupEl) return;
 
-  popupOpenWatchHandle = reactiveUtils.when(
-    () => getPopupElement()?.open,
-    () => {
-      const popupEl = getPopupElement();
-      if (!popupEl) return;
+  clearPopupListeners();
+  activePopupEl = popupEl;
 
-      focusPopupElement(popupEl);
+  if (popupEl.open) {
+    focusPopupElement(popupEl);
+    registerPopupCloseListeners(popupEl);
+    return;
+  }
 
-      popupCloseWatchHandle = reactiveUtils.when(
-        () => !popupEl.open,
-        () => {
-          focusSearchInput();
-          popupCloseWatchHandle?.remove();
-          popupCloseWatchHandle = null;
-        },
-        { once: true }
-      );
-    },
-    { once: true }
-  );
+  popupOpenPropertyChangeHandler = (event) => {
+    if (event?.detail?.name !== "open" || !popupEl.open) return;
+
+    focusPopupElement(popupEl);
+    removePopupOpenListener();
+    registerPopupCloseListeners(popupEl);
+  };
+
+  popupEl.addEventListener("arcgisPropertyChange", popupOpenPropertyChangeHandler);
 }
 
-
 /**
- * Removes existing watcher handles before creating new ones.
+ * Removes existing popup event listeners before creating new ones.
  * This prevents duplicate focus transitions after multiple searches.
  */
-function clearPopupWatchers() {
-  popupOpenWatchHandle?.remove();
-  popupCloseWatchHandle?.remove();
-  popupOpenWatchHandle = null;
-  popupCloseWatchHandle = null;
+function clearPopupListeners() {
+  removePopupOpenListener();
+  removePopupCloseListeners();
+  activePopupEl = null;
+}
+
+function registerPopupCloseListeners(popupEl) {
+  popupCloseHandler = () => {
+    focusSearchInput();
+    removePopupCloseListeners();
+  };
+
+  popupClosePropertyChangeHandler = (event) => {
+    if (event?.detail?.name !== "open" || popupEl.open) return;
+    focusSearchInput();
+    removePopupCloseListeners();
+  };
+
+  popupEl.addEventListener("arcgisClose", popupCloseHandler);
+  popupEl.addEventListener("arcgisPropertyChange", popupClosePropertyChangeHandler);
+}
+
+function removePopupOpenListener() {
+  if (!activePopupEl || !popupOpenPropertyChangeHandler) return;
+
+  activePopupEl.removeEventListener("arcgisPropertyChange", popupOpenPropertyChangeHandler);
+  popupOpenPropertyChangeHandler = null;
+}
+
+function removePopupCloseListeners() {
+  if (!activePopupEl) {
+    popupCloseHandler = null;
+    popupClosePropertyChangeHandler = null;
+    return;
+  }
+
+  if (popupCloseHandler) {
+    activePopupEl.removeEventListener("arcgisClose", popupCloseHandler);
+  }
+
+  if (popupClosePropertyChangeHandler) {
+    activePopupEl.removeEventListener("arcgisPropertyChange", popupClosePropertyChangeHandler);
+  }
+
+  popupCloseHandler = null;
+  popupClosePropertyChangeHandler = null;
 }
 
 /**
