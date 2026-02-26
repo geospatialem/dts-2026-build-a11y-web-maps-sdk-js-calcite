@@ -1,0 +1,35 @@
+@import "../shared/demo-base.css";
+
+/* Esri Developer & Technology Summit Demo Template */
+/* Demo template theming example */
+
+body calcite-navigation-logo {
+  --calcite-color-text-2: #737373;  
+}
+body.calcite-mode-dark calcite-navigation-logo {
+  --calcite-icon-color: #8FD0FF;
+  --calcite-color-text-2: #C7C7C7;
+}
+
+#feature-list {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  max-height: 60vh;
+  overflow: auto;
+}
+
+#feature-controls {
+  padding: 0.75rem 0.75rem 0;
+}
+
+.feature-item-interactive {
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.feature-item-interactive:focus-visible,
+.feature-item-interactive.is-selected {
+  outline: 2px solid var(--calcite-color-focus);
+  outline-offset: 2px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feature Panel - 2026 Esri Developer & Technology Summit</title>
+
+  <script type="module" src="https://js.arcgis.com/5.0/"></script>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <calcite-shell content-behind>
+
+    <calcite-navigation navigation-action slot="header" id="nav">
+      <calcite-navigation-logo icon="accessibility" alt="Application logo" slot="logo" heading="Feature Panel"
+        description="Esri Developer & Technology Summit 2026"></calcite-navigation-logo>
+    </calcite-navigation>
+    <calcite-shell-panel slot="panel-start" display-mode="float-content">
+      <calcite-panel id="feature-panel" heading="Feature highlights">
+        <div id="feature-controls">
+          <calcite-button id="load-features-button" width="full" icon-start="search">Load features in
+            extent</calcite-button>
+        </div>
+        <div id="feature-list"></div>
+      </calcite-panel>
+    </calcite-shell-panel>
+    <arcgis-map zoom="12" item-id="658732a227624146ba8322a94bc6ad8c">
+      <arcgis-zoom slot="top-left"></arcgis-zoom>
+    </arcgis-map>
+  </calcite-shell>
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>

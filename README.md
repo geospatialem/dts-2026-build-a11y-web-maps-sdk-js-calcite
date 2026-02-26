@@ -23,6 +23,10 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
 5. [High Contrast](demos/high-contrast/)
    - Showcase high-contrast basemaps and Calcite theming to improve perceivability for users with low vision in line with [WCAG's 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) Success Criterion.
 6. [Consistent focus](demos/consistent-focus)
+7. [Feature Panel](demos/features-panel)
+   - Uses the `arcgis-feature` component to display features in the current map extent within a side panel, with keyboard-accessible navigation through feature results.
+   
+
 
 ## Run locally
 
