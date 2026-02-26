@@ -291,4 +291,3 @@ document.querySelector("arcgis-expand").addEventListener("arcgisPropertyChange",
     searchEl.setFocus();
   }
 })
-
