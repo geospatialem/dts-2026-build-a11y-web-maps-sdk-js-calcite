@@ -4,8 +4,6 @@ const panelEl = document.getElementById("sheet-panel");
 const sheetEl = document.getElementById("sheet");
 const mapEl = document.getElementById("map-el");
 const actionBarEl = document.getElementById("custom-action-bar");
-const searchEl = document.getElementById("search-el");
-const expandEl = document.getElementById("expand-el");
 
 let mode = "light";
 
