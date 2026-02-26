@@ -20,7 +20,6 @@ function registerEventListeners() {
   panelEl?.addEventListener("calcitePanelClose", handlePanelClose);
   navigationEl?.addEventListener("calciteNavigationActionSelect", handleSheetOpen);
   searchEl?.addEventListener("arcgisSearchComplete", handleSearchComplete);
-  searchEl?.addEventListener("search-complete", handleSearchComplete);
 }
 
 function handleSheetOpen() {
