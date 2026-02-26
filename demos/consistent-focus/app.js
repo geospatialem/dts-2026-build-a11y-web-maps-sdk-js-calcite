@@ -41,6 +41,7 @@ function handleModeChange() {
   toggleModeEl.icon = isDarkMode ? "moon" : "brightness";
   mapEl.basemap = isDarkMode ? "dark-gray" : "gray";
   document.body.classList.toggle("calcite-mode-dark");
+  document.querySelector("calcite-loader").hidden = true;
 }
 
 function handleSheetOpen() {
