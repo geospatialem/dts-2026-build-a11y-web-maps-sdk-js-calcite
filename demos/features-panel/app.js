@@ -423,7 +423,10 @@ function setLoadButtonState(hasResults) {
   if (!loadFeaturesButtonEl) return;
 
   const buttonText = hasResults ? "Clear features" : "Load features in extent";
+  const buttonIcon = hasResults ? "reset" : "search";
+
   loadFeaturesButtonEl.textContent = buttonText;
+  loadFeaturesButtonEl.setAttribute("icon-start", buttonIcon);
 }
 
 // Create a hidden live region used for accessibility announcements.
