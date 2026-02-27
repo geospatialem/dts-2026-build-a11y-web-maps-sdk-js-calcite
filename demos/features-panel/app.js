@@ -6,7 +6,7 @@ const DEFAULT_PANEL_HEADING = "Feature highlights";
 const DEFAULT_GUIDANCE_MESSAGE =
   `Select "Load features in extent" to query all feature layers in the current map view.`;
 const KEYBOARD_SHORTCUT_MESSAGE =
-  "Press Home (or ⌘+↑ on Mac) to jump to the top and move focus to Load features.";
+  `Press the Home key, or ⌘+↑ on Mac, to jump to the top and shift focus to the "Load features" button.`;
 const INITIAL_GUIDANCE_MESSAGE = `${DEFAULT_GUIDANCE_MESSAGE} Tip: ${KEYBOARD_SHORTCUT_MESSAGE.charAt(0).toLowerCase()}${KEYBOARD_SHORTCUT_MESSAGE.slice(1)}`;
 
 // Main page elements we interact with throughout this file.
