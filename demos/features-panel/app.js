@@ -2,15 +2,18 @@ import { setupSheetInteractions } from "../shared/shell-navigation.js";
 import { mountAccessibilitySheet } from "../shared/accessibility-sheet.js";
 
 // Define panel messages 
-const DEFAULT_PANEL_HEADING = "Feature highlights";
+const DEFAULT_PANEL_HEADING = "Explore features in current extent";
+const LOAD_FEATURES_BUTTON_TEXT = "Get features";
+const CLEAR_FEATURES_BUTTON_TEXT = "Clear features";
 const DEFAULT_GUIDANCE_MESSAGE =
-  `Select "Load features in extent" to query all feature layers in the current map view.`;
+  `Select ${LOAD_FEATURES_BUTTON_TEXT} to query all feature layers in the current map view.`;
 const KEYBOARD_SHORTCUT_MESSAGE =
-  `Press the Home key, or ⌘+↑ on Mac, to jump to the top and shift focus to the "Load features" button.`;
+  `Press the Home key, or ⌘+↑ on Mac, to jump to the top and shift focus to the ${LOAD_FEATURES_BUTTON_TEXT} button.`;
 const INITIAL_GUIDANCE_MESSAGE = `${DEFAULT_GUIDANCE_MESSAGE} Tip: ${KEYBOARD_SHORTCUT_MESSAGE.charAt(0).toLowerCase()}${KEYBOARD_SHORTCUT_MESSAGE.slice(1)}`;
 
 // Main page elements we interact with throughout this file.
 const mapEl = document.querySelector("arcgis-map");
+
 const featurePanelEl = document.getElementById("feature-panel");
 const featureListEl = document.getElementById("feature-list");
 const loadFeaturesButtonEl = document.getElementById("load-features-button");
@@ -41,6 +44,7 @@ initializeFeaturePanel();
 // Set up the panel and connect button/keyboard events.
 function initializeFeaturePanel() {
   ensureLiveRegion();
+  featurePanelEl.heading = DEFAULT_PANEL_HEADING;
   setLoadButtonState(false);
 
   featureLayers = getFeatureLayers();
@@ -405,7 +409,6 @@ function renderMessage(message, type = "info") {
 
   const titleEl = document.createElement("span");
   titleEl.slot = "title";
-  titleEl.textContent = "Feature panel";
 
   const messageEl = document.createElement("span");
   messageEl.slot = "message";
@@ -422,7 +425,7 @@ function renderMessage(message, type = "info") {
 function setLoadButtonState(hasResults) {
   if (!loadFeaturesButtonEl) return;
 
-  const buttonText = hasResults ? "Clear features" : "Load features in extent";
+  const buttonText = hasResults ? CLEAR_FEATURES_BUTTON_TEXT : LOAD_FEATURES_BUTTON_TEXT;
   const buttonIcon = hasResults ? "reset" : "search";
 
   loadFeaturesButtonEl.textContent = buttonText;
