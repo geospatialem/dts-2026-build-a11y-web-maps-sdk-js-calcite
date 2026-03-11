@@ -23,7 +23,6 @@ reduceMotionMedia.addEventListener("change", handleMotionPreferenceChange);
 
 initializeMotionControls();
 
-// TODO wait for API issue then handle popup focus state
 
 function initializeMotionControls() {
   updateMotionPreferenceLabel();
@@ -65,20 +64,10 @@ function updateAnimationButtons() {
 }
 
 function setAnimationEnabled(enabled) {
-  const view = mapEl?.view;
-  if (!view) return;
-
-  if ("animationsEnabled" in view) {
-    view.animationsEnabled = enabled;
-    animationEnabled = enabled;
-    return;
-  }
-
-  if ("animationsDisabled" in view) {
-    view.animationsDisabled = !enabled;
-    animationEnabled = enabled;
-    return;
-  }
+  if (!mapEl) return;
+  mapEl.animationsDisabled = !enabled;
 
   animationEnabled = enabled;
+  return;
+
 }
