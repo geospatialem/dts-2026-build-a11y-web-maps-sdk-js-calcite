@@ -4,7 +4,7 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
 
 - [Demo Site](https://geospatialem.github.io/dts-2026-build-a11y-web-maps-sdk-js-calcite)
 - [Code](https://github.com/geospatialem/dts-2026-build-a11y-web-maps-sdk-js-calcite)
-- _Slides, will be posted at a later time_
+- <a href="building-a11y-web-apps-with-arcgis-maps-sdk-for-js-and-calcite.pdf" target="_blank">Slides</a>, opens in a new window
 
 ## Demos
 
@@ -25,8 +25,6 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
 6. [Consistent focus](demos/consistent-focus)
 7. [Feature Panel](demos/features-panel)
    - Uses the `arcgis-feature` component to display features in the current map extent within a side panel, with keyboard-accessible navigation through feature results.
-   
-
 
 ## Run locally
 
