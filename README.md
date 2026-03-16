@@ -1,6 +1,6 @@
 # Building Accessible Web Apps with ArcGIS Maps SDK for JavaScript and Calcite
 
-Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley in Palm Springs, California.
+Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley in Palm Springs, California on Wednesday, March 11.
 
 - [Demo Site](https://geospatialem.github.io/dts-2026-build-a11y-web-maps-sdk-js-calcite)
 - [Code](https://github.com/geospatialem/dts-2026-build-a11y-web-maps-sdk-js-calcite)
@@ -21,8 +21,10 @@ Presented at the 2026 Esri Developer Summit by Kelly Hutchins and Kitty Hurley i
    - Includes controls to explicitly play or pause animation.
    - Note: disabling animation affects all animation, including goTo zoom transitions.
 5. [High Contrast](demos/high-contrast/)
+   - _**Note: requires an API token, the current token expires on April 1, 2026**_
    - Showcase high-contrast basemaps and Calcite theming to improve perceivability for users with low vision in line with [WCAG's 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) Success Criterion.
 6. [Consistent focus](demos/consistent-focus)
+   - Provide a visible focus and consistent navigation throughout an application via keyboard.
 7. [Feature Panel](demos/features-panel)
    - Uses the `arcgis-feature` component to display features in the current map extent within a side panel, with keyboard-accessible navigation through feature results.
 
